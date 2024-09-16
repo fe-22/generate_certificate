@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Certificado Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        .file-input {
+            margin-bottom: 10px;
+        }
+        .file-input label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .file-input input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .messages {
+            margin-top: 20px;
+        }
+        .messages ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .messages li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .messages li.success {
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+            color: #3c763d;
+        }
+        .messages li.danger {
+            background-color: #f2dede;
+            border-color: #ebccd1;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+    <h1>Certificado Generator</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="file-input">
+            <label for="excel_file">Selecione a planilha de certificados (.xlsx)</label>
+            <input type="file" name="excel_file" accept=".xlsx" id="excel_file">
+        </div>
+        <div class="file-input">
+            <label for="template_file">Selecione o template de certificado (.jpeg, .jpg, .png)</label>
+            <input type="file" name="template_file" accept=".jpeg, .jpg, .png" id="template_file">
+        </div>
+        <input type="submit" value="Gerar Certificados">
+    </form>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li class="{{ 'success' if message.startswith('Certificados gerados com sucesso!') else 'danger' }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+    </div>
+    <footer>
+        <p>&copy; 2024 - Desenvolvido por Fthec</p>
+        <p>Contatos;fernandoalextech@gmail.com / 55-11982170425</p>
+      </footer>
+</body>
+</html>
